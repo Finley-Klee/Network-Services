@@ -163,4 +163,4 @@ I needed to try a couple of different combinations of John Cactus's name to find
   Step Five: <br />
   <img src="" height="80%" width="80%" alt="image five"/>
 </p>
-<img width="300" alt="Screenshot 2024-07-16 at 3 30 55 PM" src="">
+
