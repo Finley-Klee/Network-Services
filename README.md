@@ -59,12 +59,16 @@ As you're well aware, due to the current pandemic most of POLO inc. has insisted
   <br />
   <br />
   So I logged back into SMB to check out the ssh directory. Is used the change directory command (cd) to move to that directory and list it's contents, where I can see there are authentication keys for ssh. The id_rsa.pub is likely the public key to an asymmetrical key pair, so I think the most useful key is going to be id_rsa, which is likely the private key for that key pair. So I am going to "get" that file and then in my terminal I used chmod to change the file permissions to 600 so that I can both read and write to the file. I then used "cat" to check that I could read the file and I can.<br />
-  <img src="https://github.com/user-attachments/assets/6919230a-1c69-4e3e-ac46-0d22ceb971d9" height="80%" width="80%" alt="image five"/>
-  <img src="https://github.com/user-attachments/assets/fb36d9d2-97ee-44ec-ae05-6f33990ccee5" height="80%" width="80%" alt="image five"/>
+  <img src="https://github.com/user-attachments/assets/6919230a-1c69-4e3e-ac46-0d22ceb971d9" height="80%" width="80%" alt="smb output in the terminal showing an ls listing the directories and file in the smb share, then a cd command to the .ssh directory, followed by an ls of that directory which shows several keys including id_rsa. Then the get command for id_rsa file"/>
+  <img src="https://github.com/user-attachments/assets/fb36d9d2-97ee-44ec-ae05-6f33990ccee5" height="80%" width="80%" alt="back in the attack box terminal an ls showing the id_rsa key has been succesfully downloaded, then the chmod command changing the file permissions and lastly the cat of the key bellow which the full rsa key can be seen."/>
   <br />
   <br />
-Lastly, <br />
-  <img src="" height="80%" width="80%" alt="image five"/>
+I needed to try a couple of different combinations of John Cactus's name to find the correct one to successfully connect to ssh with the private key, which I added to the ssh command with the -i flag followed by the file name where the key is located.<br />
+  <img src="https://github.com/user-attachments/assets/a22bbfda-8a02-4d9c-86b8-6e725662ff72" height="80%" width="80%" alt="multiple attempts to log into ssh with the usernames JohnCactus, John, and Cactus (all with capital letters) and finally a successful attempt with cactus all lowercase."/>
+  <br />
+  <br />
+  Finally, now that I've logged into secure shell (ssh) I listed the content and found the flag in the smb.txt file!<br />
+  <img src="https://github.com/user-attachments/assets/5f56a230-f738-42cd-9e47-c80c2daac9a9" height="80%" width="80%" alt="the ls in the ssh only shows one file titled smb.txt and when you cat that file you see the flag which reads THM{smb_is_fun_eh?}"/>
 </p>
 
 - <b>Section Name</b>
@@ -158,3 +162,4 @@ Lastly, <br />
   Step Five: <br />
   <img src="" height="80%" width="80%" alt="image five"/>
 </p>
+<img width="300" alt="Screenshot 2024-07-16 at 3 30 55 PM" src="">
