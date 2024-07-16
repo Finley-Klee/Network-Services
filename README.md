@@ -10,6 +10,7 @@ Insert a short description of the project
 - <b>nmap</b>
 - <b>Enum4Linux</b>
 - <b>SMBClient</b>
+- <b>SSH with a private key</b>
 
 <h2>Environments Used </h2>
 
