@@ -1,8 +1,6 @@
 # Network-Services
 This room is the first of two parts exploring a variety of network services. Part one includes SMB, Telnet, and FTP. The TryHackMe room can be found here: https://tryhackme.com/r/room/networkservices
 
-<h2>Description</h2>
-Insert a short description of the project
 
 <h2>Utilities Used</h2>
 
