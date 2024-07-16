@@ -9,6 +9,7 @@ Insert a short description of the project
 - <b>Terminal</b> 
 - <b>nmap</b>
 - <b>Enum4Linux</b>
+- <b>SMBClient</b>
 
 <h2>Environments Used </h2>
 
@@ -37,6 +38,35 @@ Insert a short description of the project
 </p>
 <br />
 <br />
+- <b>Exploiting SMB</b>
+<p>Now that I've gathered some information about SMB on my target, I'm going to use the anonymous SMB share access misconfiguration to gain information that will lead to shell access.</p>
+<br>
+<p align="center">In order to access the SMB share we need to use a client and in this room I'm using the Samba default SMBClient. To answer the first question I used the given syntax smbclient //[IP]/[SHARE] to and the tags -U [name] and -p [port] to specify the username and the port to practice writing the command. <br/>
+  <img src="https://github.com/user-attachments/assets/21348724-8827-4d45-af76-e373f6c497a0" height="80%" width="80%" alt="question and answer from the TryHackMe side with a white background and black text. The answer portion is inside a rectangular box with rounded corners and a light gray background. The question reads What would be the correct syntax to access an SMB share called secret as user suit on a machine with the IP 10.10.10.2 on the default port? and inside the box is the answer smbclient //10.10.10.2/secret -U suit -p 445 to the right is a bright green rectangle with a black checkmark to the left of the words correct answer"/>
+  <br />
+  <br />
+  So now that I know the syntax I'm going to try it on my target using the "Anonymous" user and try not providing a password and see what happens. It worked! This SMB share allows anonymous access.<br />
+  <img src="https://github.com/user-attachments/assets/f6e7b867-3f5b-42bb-a6c7-25e10ddf3f02" height="80%" width="80%" alt="a linux terminal with the command smbclient //10.10.85.118/profiles -U anonymous -p 445 on the top line. The second line prompts for the user's password which I left blank and then the next line reads try help to get a list of possible commands followed by a new smb command line which starts with smb: "/>
+  <br />
+  <br />
+  I started with an ls command to list the contents of the share, then tried to concatenate the contents of the text file "Working From Home Information.txt", but that command was not found, so I used the help command to see a list of commands.<br />
+  <img src="https://github.com/user-attachments/assets/9e4dae75-c28e-4718-ba25-fab9e61caa5a" height="80%" width="80%" alt="output from the ls command showing a few directories and a text file following by my failure to use cat and then a list of commands returned from the help command."/>
+  <br />
+  <br />
+ I tried a few commands to see if I could read the text file directly from the SMB share, but I couldn't quite figure out, but in the process I downloaded the file to the attackbox machine, so I logged out and quit so I could concatenate the file from the terminal. Reading this letter, I see that it is addressed to John Cactus, so I can assume that this profile folder belongs to John Cactus. (The answer to the 4th question) and I also see here that James, the department manager, has configured ssh to allow him to work from home (answer to the 5th question).<br />
+  <img src="https://github.com/user-attachments/assets/76379a01-f7fb-42c5-a13b-b83325b42fb8" height="80%" width="80%" alt="in the first part I tried the get, mget, and open commands in smb, then logged off and in my terminal on attack box the ls command shows the text file which I printed to the terminal with cat and it reads John Cactus
+As you're well aware, due to the current pandemic most of POLO inc. has insisted that, wherever possible, employees should work from home. As such- your account has now been enabled with ssh access to the main server. If there are any problems, please contact the IT department at it@polointernalcoms.uk Regards, James Department Manager"/>
+  <br />
+  <br />
+  So I logged back into SMB to check out the ssh directory. Is used the change directory command (cd) to move to that directory and list it's contents, where I can see there are authentication keys for ssh. The id_rsa.pub is likely the public key to an asymmetrical key pair, so I think the most useful key is going to be id_rsa, which is likely the private key for that key pair. So I am going to "get" that file and then in my terminal I used chmod to change the file permissions to 600 so that I can both read and write to the file. I then used "cat" to check that I could read the file and I can.<br />
+  <img src="https://github.com/user-attachments/assets/6919230a-1c69-4e3e-ac46-0d22ceb971d9" height="80%" width="80%" alt="image five"/>
+  <img src="https://github.com/user-attachments/assets/fb36d9d2-97ee-44ec-ae05-6f33990ccee5" height="80%" width="80%" alt="image five"/>
+  <br />
+  <br />
+Lastly, <br />
+  <img src="" height="80%" width="80%" alt="image five"/>
+</p>
+
 - <b>Section Name</b>
 <p>Description</p>
 <br>
@@ -60,4 +90,71 @@ Insert a short description of the project
   <img src="" height="80%" width="80%" alt="image five"/>
 </p>
 
-<img width="1117" alt="Screenshot 2024-07-16 at 2 08 41 PM" src="">
+- <b>Section Name</b>
+<p>Description</p>
+<br>
+<p align="center">Step One: <br/>
+  <img src="" height="80%" width="80%" alt="image one"/>
+  <br />
+  <br />
+  Step Two: <br />
+  <img src="" height="80%" width="80%" alt="image two"/>
+  <br />
+  <br />
+  Step Three: <br />
+  <img src="" height="80%" width="80%" alt="image three"/>
+   <br />
+  <br />
+  Step Four: <br />
+  <img src="" height="80%" width="80%" alt="image four"/>
+   <br />
+  <br />
+  Step Five: <br />
+  <img src="" height="80%" width="80%" alt="image five"/>
+</p>
+
+- <b>Section Name</b>
+<p>Description</p>
+<br>
+<p align="center">Step One: <br/>
+  <img src="" height="80%" width="80%" alt="image one"/>
+  <br />
+  <br />
+  Step Two: <br />
+  <img src="" height="80%" width="80%" alt="image two"/>
+  <br />
+  <br />
+  Step Three: <br />
+  <img src="" height="80%" width="80%" alt="image three"/>
+   <br />
+  <br />
+  Step Four: <br />
+  <img src="" height="80%" width="80%" alt="image four"/>
+   <br />
+  <br />
+  Step Five: <br />
+  <img src="" height="80%" width="80%" alt="image five"/>
+</p>
+
+- <b>Section Name</b>
+<p>Description</p>
+<br>
+<p align="center">Step One: <br/>
+  <img src="" height="80%" width="80%" alt="image one"/>
+  <br />
+  <br />
+  Step Two: <br />
+  <img src="" height="80%" width="80%" alt="image two"/>
+  <br />
+  <br />
+  Step Three: <br />
+  <img src="" height="80%" width="80%" alt="image three"/>
+   <br />
+  <br />
+  Step Four: <br />
+  <img src="" height="80%" width="80%" alt="image four"/>
+   <br />
+  <br />
+  Step Five: <br />
+  <img src="" height="80%" width="80%" alt="image five"/>
+</p>
