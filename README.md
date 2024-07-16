@@ -72,7 +72,41 @@ I needed to try a couple of different combinations of John Cactus's name to find
   <img src="https://github.com/user-attachments/assets/5f56a230-f738-42cd-9e47-c80c2daac9a9" height="80%" width="80%" alt="the ls in the ssh only shows one file titled smb.txt and when you cat that file you see the flag which reads THM{smb_is_fun_eh?}"/>
 </p>
 
-- <b>Section Name</b>
+- <b>Enumberating Telnet</b>
+<p>Moving on to a new target machine, I'm searching for information on this machine with regard to the next networking service, Telnet. Telnet is an old, plaintext service which has largely been replaced by secure shell because Telnet lacks encryption and ssh is encrypted.</p>
+<br>
+<p align="center">I ran an nmap scan using the same flags as in the SMB section and discovered one open port. (If you run the scan without the -p- flag for all ports, the scan will return no open ports)<br/>
+  <img src="https://github.com/user-attachments/assets/bd90cf37-127b-4c87-ba43-6bf7a27b13af" height="80%" width="80%" alt="nmap scan output with the line highlighted showing that an open port has been found: tcp port 8012"/>
+  <br />
+  <br />
+   This open port is a nonstandard port, but because of the information gleaned from the nmap scan we can see that it has a title of "SKIDY'S BACKDOOR" so based on the title I can answer the questions for what it's used for and who it likely belongs to.<br />
+  <img src="https://github.com/user-attachments/assets/19170d03-508b-4788-85e4-5dc809cdab9d" height="80%" width="80%" alt="in the info of the nmap scan the words SKIDY'S BACKDOOR are highlighted"/>
+</p>
+
+- <b>Exploiting Telnet</b>
+<p>Now that I have found Skidy's backdoor on port 8012, I can use it to connect using the Telnet service.</p>
+<br>
+<p align="center">I connected to telnet over port 8012 and received the welcome message "SKIDY'S BACKDOOR" and tried a few commands, but my inputs didn't lead to anything being returned.<br/>
+  <img src="https://github.com/user-attachments/assets/ce170602-2108-4504-b53c-e96196d81012" height="80%" width="80%" alt="a linux terminal with the telnet command to connect to the service followed by the commands ls and pwd with no return"/>
+  <br />
+  <br />
+  So to check if my input is being executed as a system command I set up a tcpdump listener on the attack box.<br />
+  <img src="https://github.com/user-attachments/assets/4ec3425c-8a46-47c6-9a83-942534c91bd8" height="80%" width="80%" alt="two terminal windows, one in front of the other, the front window is smaller than the back window and text from both can be seen though the top left of the back window is obscured by the front. The front terminal shows the tcpdum listener setup."/>
+  <br />
+  <br />
+  I then ran the ping command from the telnet machine to check if the commands from that machine were executing, which resulted in the listener picking up the ping, proving that the commands are properly executing.<br />
+  <img src="https://github.com/user-attachments/assets/5671682c-36fc-42da-8261-2255ae320db8" height="80%" width="80%" alt="those same two terminal windows, but now the back window shows the .RUN command followed by the command to ping the attackbox and the front window shows that the tcpdump listener received the ping."/>
+   <br />
+  <br />
+ Great! So now to create a reverse shell I used the command syntax given to me in the TryHackMe room to create an msfvenom payload (which starts with mkfifo).<br />
+  <img src="https://github.com/user-attachments/assets/c7a35ee2-936a-4bb5-824d-977e4864f6f2" height="80%" width="80%" alt="in a separate terminal winodw, an msfvenom command with the attackbox ip address listed for the host and the port to use designated as 4444, which then output a payload which is highlighted in white and begins with mkfifo."/>
+   <br />
+  <br />
+  I ran the payload on the Telnet machine which allowed me to establish a connection through a reverse shell in the terminal on the attackbox. That allowed me to list the contents where I found a text file named flag.txt. I concatenated flag.txt and found the flag!<br />
+  <img src="https://github.com/user-attachments/assets/65b2b14f-8880-4463-9c85-1bfd24e4addd" height="80%" width="80%" alt="once again there are two terminal windows, a front and a back. The front window is the attackbox terminal and the back window is the Telnet service. At the bottom of the text on the back window the .RUN command followed by the msfvenom payload can be seen, and on the front window this resulted in a connection received. Below the connection received line reads ls, flag.txt, cat flag.txt THM you got the telnet flag."/>
+</p>
+
+- <b>Enumerating FTP</b>
 <p>Description</p>
 <br>
 <p align="center">Step One: <br/>
@@ -95,53 +129,7 @@ I needed to try a couple of different combinations of John Cactus's name to find
   <img src="" height="80%" width="80%" alt="image five"/>
 </p>
 
-- <b>Section Name</b>
-<p>Description</p>
-<br>
-<p align="center">Step One: <br/>
-  <img src="" height="80%" width="80%" alt="image one"/>
-  <br />
-  <br />
-  Step Two: <br />
-  <img src="" height="80%" width="80%" alt="image two"/>
-  <br />
-  <br />
-  Step Three: <br />
-  <img src="" height="80%" width="80%" alt="image three"/>
-   <br />
-  <br />
-  Step Four: <br />
-  <img src="" height="80%" width="80%" alt="image four"/>
-   <br />
-  <br />
-  Step Five: <br />
-  <img src="" height="80%" width="80%" alt="image five"/>
-</p>
-
-- <b>Section Name</b>
-<p>Description</p>
-<br>
-<p align="center">Step One: <br/>
-  <img src="" height="80%" width="80%" alt="image one"/>
-  <br />
-  <br />
-  Step Two: <br />
-  <img src="" height="80%" width="80%" alt="image two"/>
-  <br />
-  <br />
-  Step Three: <br />
-  <img src="" height="80%" width="80%" alt="image three"/>
-   <br />
-  <br />
-  Step Four: <br />
-  <img src="" height="80%" width="80%" alt="image four"/>
-   <br />
-  <br />
-  Step Five: <br />
-  <img src="" height="80%" width="80%" alt="image five"/>
-</p>
-
-- <b>Section Name</b>
+- <b>Exploiting FTP</b>
 <p>Description</p>
 <br>
 <p align="center">Step One: <br/>
