@@ -12,6 +12,7 @@ This room is the first of two parts exploring a variety of network services. Par
 - <b>SSH with a private key</b>
 - <b>Telnet</b>
 - <b>FTP</b>
+- <b>Hydra</b>
 
 <h2>Environments Used </h2>
 
