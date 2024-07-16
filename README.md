@@ -132,22 +132,12 @@ I needed to try a couple of different combinations of John Cactus's name to find
 <br>
 <p align="center">I used Hydra to brute force Mike's password with the command hydra and the tags -t 4 to run 4 parallel connections on the target, -l Mike, to designate the username, -P /usr/share/wordlists/rockyou.txt to point to the wordlist to use as passowrds to try, -vV to increase the verbosity of the response, then the ip address, and lastly ftp to indicate the protocol.<br/>
   Then I waited a long time for Hydra to try the passwords.<br />
-  <img src="" height="80%" width="80%" alt="image one"/>
+  Like, hours.<br />
+  Only to realize later that if I had to extend the machine timers I probably did something wrong, because the room should be doable within the alloted time to run the machines, so I looked up what I might be doing wrong and discovered that the username shouldn't be capitalized and that the password is "password". When I ran hydra again with the correct username the answer popped up within seconds, so you live and you learn.<br />
+  <img src="https://github.com/user-attachments/assets/3957bc25-e889-481e-935c-c7bbd9f0df06" height="80%" width="80%" alt="linux terminal showing the hydra command and the output found a successful username and password combination of mike and password."/>
   <br />
   <br />
-  Step Two: <br />
-  <img src="" height="80%" width="80%" alt="image two"/>
-  <br />
-  <br />
-  Step Three: <br />
-  <img src="" height="80%" width="80%" alt="image three"/>
-   <br />
-  <br />
-  Step Four: <br />
-  <img src="" height="80%" width="80%" alt="image four"/>
-   <br />
-  <br />
-  Step Five: <br />
-  <img src="" height="80%" width="80%" alt="image five"/>
+ Then I used the username and password to log in to the ftp server and get the file ftp.txt. I concatenated on the attack box to find the flag.<br />
+  <img src="https://github.com/user-attachments/assets/85e84f6a-86d3-4483-9fd8-6eace6c8e0b1" height="80%" width="80%" alt="linux terminal with commands to log in to ftp and get the ftp.txt file, which when concatenated reads THM you got the ftp flag in obfuscated text with numbers in place of some letters and underscores between the words."/>
 </p>
 
