@@ -128,9 +128,10 @@ I needed to try a couple of different combinations of John Cactus's name to find
 </p>
 
 - <b>Exploiting FTP</b>
-<p>Description</p>
+<p>Now that I have an idea of a username, I need to figure out the password and use those credentials to log in to Mike's ftp server.</p>
 <br>
-<p align="center">Step One: <br/>
+<p align="center">I used Hydra to brute force Mike's password with the command hydra and the tags -t 4 to run 4 parallel connections on the target, -l Mike, to designate the username, -P /usr/share/wordlists/rockyou.txt to point to the wordlist to use as passowrds to try, -vV to increase the verbosity of the response, then the ip address, and lastly ftp to indicate the protocol.<br/>
+  Then I waited a long time for Hydra to try the passwords.<br />
   <img src="" height="80%" width="80%" alt="image one"/>
   <br />
   <br />
