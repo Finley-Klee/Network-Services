@@ -109,26 +109,22 @@ I needed to try a couple of different combinations of John Cactus's name to find
 </p>
 
 - <b>Enumerating FTP</b>
-<p>Description</p>
+<p>Once again I'm searching for information on a new target machine.</p>
 <br>
-<p align="center">Step One: <br/>
-  <img src="" height="80%" width="80%" alt="image one"/>
+<p align="center">I ran another nmap scan and discovered ftp running on the usual port, tcp 21.<br/>
+  <img src="https://github.com/user-attachments/assets/1e5bd50c-cd6a-4fc9-837c-94f10da84efd" height="80%" width="80%" alt="the nmap scan results with the port discovered highlighted as port 21 open running ftp."/>
   <br />
   <br />
-  Step Two: <br />
-  <img src="" height="80%" width="80%" alt="image two"/>
+ Scrolling down to the results summary, I found the version of ftp that's running is vsftpd.<br />
+  <img src="https://github.com/user-attachments/assets/27f47367-30b7-41b3-800e-9f1004a45016" height="80%" width="80%" alt="another view of the nmap scan results, this time with the ftp version highlighted, reading vsftpd."/>
   <br />
   <br />
-  Step Three: <br />
-  <img src="" height="80%" width="80%" alt="image three"/>
+  I could also see from the nmap scan that anonymous logon is possible, so I logged on to ftp using the anonymous user name and no password. I listed the contents of the ftp server and found a public notice document. I transfered the public notice back to the attack box to read. <br />
+  <img src="https://github.com/user-attachments/assets/d976d50a-23da-40b3-83cf-fe4f068a7071" height="80%" width="80%" alt="command line interface showing an anonymous logon to the ftp server, followed by listing the contents, then getting the public_notice.txt document, and lastly logging out of the ftp."/>
    <br />
   <br />
-  Step Four: <br />
-  <img src="" height="80%" width="80%" alt="image four"/>
-   <br />
-  <br />
-  Step Five: <br />
-  <img src="" height="80%" width="80%" alt="image five"/>
+  For the last step in the enumeration phase, I concatenated the contents of the public notice, which is how I found a possible user named Mike.<br />
+  <img src="https://github.com/user-attachments/assets/fee38986-a4bb-4795-8177-b4b410e49453" height="80%" width="80%" alt="linux terminal showing the listing of directories and files including PUBLIC_NOTICE.txt, then the cat command for public_notice.txt which reads message from system administrators, hello, I hope everyone is aware that the FTP server will not be available over the weekend - we will be carrying out routine system maintenance. Backups will be made to my account so I recommend encrypting any sensitive data. cheers, Mike."/>
 </p>
 
 - <b>Exploiting FTP</b>
