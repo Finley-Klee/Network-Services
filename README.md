@@ -6,9 +6,12 @@ This room is the first of two parts exploring a variety of network services. Par
 
 - <b>Terminal</b> 
 - <b>nmap</b>
+- <b>SMB</b>
 - <b>Enum4Linux</b>
 - <b>SMBClient</b>
 - <b>SSH with a private key</b>
+- <b>Telnet</b>
+- <b>FTP</b>
 
 <h2>Environments Used </h2>
 
